@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>SNU VM BI LAB</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="img/core-img/favicon.ico">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-storage.js"></script>
+    
+    <script>
+        var firebaseConfig = {
+          apiKey: process.env.FIREBASE_API_KEY,
+          authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+          projectId: process.env.FIREBASE_PROJECT_ID,
+          storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+          messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
+          appId: process.env.FIREBASE_APP_ID,
+          measurementId: process.env.FIREBASE_MEASUREMENT_ID
+        };
+        firebase.initializeApp(firebaseConfig);
+        </script>
+    <!-- Preloader -->
+    <div class="preloader d-flex align-items-center justify-content-center">
+        <div class="lds-ellipsis">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+
+    <!-- ##### Header Area Start ##### -->
+    <header class="header-area">
+        <!-- Navbar Area -->
+        <div class="oneMusic-main-menu">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container">
+                    <!-- Menu -->
+                    <nav class="classy-navbar justify-content-between" id="oneMusicNav">
+
+                        <!-- Nav brand -->
+                        <a href="index.html" class="nav-brand"><img src="img/core-img/logo.png" alt=""></a>
+
+                        <!-- Navbar Toggler -->
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
+
+                        <!-- Menu -->
+                        <div class="classy-menu">
+
+                            <!-- Close Button -->
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+
+                            <!-- Nav Start -->
+                           <div class="classynav">
+                            <ul style="margin-bottom: 0;">
+                                <li><a href="index.html">Home</a></li>
+                                <li><a href="research.html">Research</a></li>
+                                <li><a href="people.html?peo=1">People</a>
+                                    <ul class="dropdown">
+                                        <li><a href="people.html?peo=1">Professor</a></li>
+                                        <li><a href="people.html?peo=2">Member </a></li>
+                                        <li><a href="people.html?peo=3">Alumni</a></li>                                                                                             
+                                    </ul>
+                                    </li>
+                                    <li><a href="publication.html">Publication</a></li>                                    
+                                    <li><a href="notice.html">Board</a>
+                                        <ul class="dropdown">
+                                            <li><a href="notice.html">Notice</a></li>
+                                            <li><a href="board.html">Gallery </a></li>
+                                            <li><a href="schedule.html">Calendar</a></li>                                                                                       
+                                        </ul>
+                                    </li>
+                                    <li><a href="contact.html">Contact</a></li>
+                                </ul>
+
+                                <!-- Login/Register & Cart Button -->
+                                <div class="login-register-cart-button d-flex align-items-center">
+                                    <!-- Login/Register -->
+                                    <div class="login-register-btn mr-50">
+                                        <a href="login.html" id="loginBtn" style="display: block;">Login / Register</a>
+                                        <a id="logoutBtn" style="display: none;">Logout</a>
+                                    </div>                              
+                                </div>
+                            </div>
+                            <!-- Nav End -->
+
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ##### Header Area End ##### -->
+
+    <!-- ##### Breadcumb Area Start ##### -->
+    <section class="breadcumb-area bg-img bg-overlay" style="">
+        <div class="bradcumbContent">
+            <p> SNU VM LAB</p>
+            <h2>PUBLICATION</h2>
+        </div>
+    </section>
+    <!-- ##### Breadcumb Area End ##### -->
+
+
+    
+    <!-- ##### Album Catagory Area Start ##### -->
+    <section class="album-catagory section-padding-50-0">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="browse-by-catagories catagory-menu d-flex flex-wrap align-items-center mb-50">
+                        <a href="#" data-filter="*">Browse All</a>
+                        <a href="#" data-filter=".2023" >2023</a>
+                        <a href="#" data-filter=".2022">2022</a>
+                        <a href="#" data-filter=".2021">2021</a>
+                        <a href="#" data-filter=".2020">2020</a>
+                        <a href="#" data-filter=".2019">2019</a>
+                        <a href="#" data-filter=".2018">2018</a>
+                        <a href="#" data-filter=".2017">2017</a>
+                        <a href="#" data-filter=".2015">2015</a>
+                        <a href="#" data-filter=".2014">2014</a>
+                        <a href="#" data-filter=".2013">2013</a>
+                        <a href="#" data-filter=".2012">2012</a>
+                        <a href="#" data-filter=".2011">2011</a>
+                        <a href="#" data-filter=".2010">2010</a>
+                        <a href="#" data-filter=".2009">2009~</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row oneMusic-albums">
+
+
+      
+
+      
+
+                <!-- Single Album -->
+                <div class="col-12 single-album-item 2023">
+                    <div class="single-album col-6 col-sm-4 col-md-3 col-lg-2"  style="padding: 15px; float: left;">
+                        <img src="img/bg-img/40.jpg" alt="">
+                        
+                    </div> 
+                    <a href= "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7979890/" target="_blank" class="album-info-right col-6 col-sm-8 col-md-9 col-lg-10">
+                        <h5>	40. ADAS-viewer: Web-based analysis and visualization of alternative splicing in alzheimer's disease	</h5>
+		
+                        <p>	Seonggyun Han, Jaehang Shin, Habtamu Minassie Aycheh, andYounghee Lee*	</p>
+                                
+                        <p>	NPJ Systemps Biology and Applications.  (In press) (*Corresponding author)	</p>
+                    </a>
+                </div>     
+                
+                
+                <!-- Single Album -->
+                <div class="col-12 single-album-item 2020">
+                    <div class="single-album col-6 col-sm-4 col-md-3 col-lg-2"  style="padding: 15px; float: left;">
+                        <img src="img/bg-img/39.png" alt="">
+                        
+                    </div> 
+                    <a href= "https://bmcmedgenomics.biomedcentral.com/articles/10.1186/s12920-020-00836-4" target="_blank"class="album-info-right col-6 col-sm-8 col-md-9 col-lg-10">
+                        <h5>39. Differential alternative splicing between hepatocellular carcinoma with normal and elevated serum alpha-fetoprotein level	</h5>
+		
+                        <p>	Young-Joo Jin, John Chamberlin, Seonggyun Han, Jaehang Shin, Habtamu Minassie Aycheh, Seyoun Byun, andYounghee Lee*</p>
+                                
+                        <p>BMC Med Genomics. 2020. (*Corresponding author) 	</p>
+                    </a>
+                </div>        
+
+                
+
+                <!-- Single Album -->
+                <div class="col-12 single-album-item 2020">
+                    <div class="single-album col-6 col-sm-4 col-md-3 col-lg-2"  style="padding: 15px; float: left;">
+                        <img src="img/bg-img/38.jpg" alt="">
+                        
+                    </div> 
+                    <a href= "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7325550/" target="_blank"class="album-info-right col-6 col-sm-8 col-md-9 col-lg-10">
+                        <h5>	38.Gene Expression in Torn Rotator Cuff Tendons Determined by RNA Sequencing	</h5>		
+                        <p>	Robert Z Tashjian , Ian Lock , Erin K Granger , Yangliang Wang ,Younghee Lee, Peter N Chalmers , Kevin B Jones	</p>	
+                        <p>	Orthop J Sports Med. 2020.	</p>		
+                    </a>
+                </div>          
+      
+
+                <!-- Single Album -->
+                <div class="col-12 single-album-item 2020">
+                    <div class="single-album col-6 col-sm-4 col-md-3 col-lg-2"  style="padding: 15px; float: left;">
+                        <img src="img/bg-img/37.jpg" alt="">
+                        
+                    </div> 
+                    <a href= "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7582367/" target="_blank"class="album-info-right col-6 col-sm-8 col-md-9 col-lg-10">
+                        <h5>	37.Sex-specific alternative splicing regulation of alzheimer’s risk variants in CLU	</h5>		
+                        <p>	Seonggyun Han, Kwangsik Nho* andYounghee Lee*	</p>
+                        <p>	Int J. Mol. Sci. 2020. (*Corresponding author)	</p>
+                    </a>
+                </div>          
+      
+
+                <!-- Single Album -->
+                <div class="col-12 single-album-item 2020">
+                    <div class="single-album col-6 col-sm-4 col-md-3 col-lg-2"  style="padding: 15px; float: left;">
+                        <img src="img/bg-img/36.jpg" alt="">
+                        
+                    </div> 
+                    <a href= "https://pubmed.ncbi.nlm.nih.gov/32773372/" target="_blank"class="album-info-right col-6 col-sm-8 col-md-9 col-lg-10">
+                        <h5>	36.Personal Health Information Inference Using Machine Learning on RNA Expression Data from Patients With Cancer: Algorithm Validation Study	</h5>		
+                        <p>	Solbi Kweon, Jeong Hoon Lee,Younghee Lee and Yu Rang Park*	</p>		
+                        <p>	JMed Internet Res. 2020..	</p>	
+                    </a>
+                </div>          
+      
+
+                <!-- Single Album -->
+                <div class="col-12 single-album-item 2020">
+                    <div class="single-album col-6 col-sm-4 col-md-3 col-lg-2"  style="padding: 15px; float: left;">
+                        <img src="img/bg-img/35.jpg" alt="">
+                        
+                    </div> 
+                    <a href= "https://www.nature.com/articles/s41598-020-74540-9" target="_blank"class="album-info-right col-6 col-sm-8 col-md-9 col-lg-10">
+                        <h5>	35.Functional impact of alternative splicing on pathogen life cycle in human foreskin fibroblasts infected with Trypanosoma cruzi	</h5>		
+                        <p>	Hyeim Jung, Seonggyun Han, andYounghee Lee*	</p>		
+                        <p>	Nature Scientific Report. 2020. (*Corresponding author)	</p>	
+                    </a>
+                </div>          
+      
+
+                <!-- Single Album -->
+                <div class="col-12 single-album-item 2019">
+                    <div class="single-album col-6 col-sm-4 col-md-3 col-lg-2"  style="padding: 15px; float: left;">
+                        <img src="img/bg-img/34.jpg" alt="">
+                        
+                    </div> 
+                    <a href= "https://www.nature.com/articles/s41598-019-53445-2" target="_blank"class="album-info-right col-6 col-sm-8 col-md-9 col-lg-10">
+                        <h5>	34.An exome-wide rare variant analysis of Korean men identifies three novel genes predisposing to prostate cancer.	</h5>		
+                        <p>	D Jong Jin Oh, Manu Shivakumar, Jason Miller, Shefali Verma , Hakmin Lee, Younghee Lee, Sung Kyu Hong , Sang Eun Lee, Dokyoon Kim*, Seok-Soo Byun*	</p>	
+                        <p>	Nature Scientific Report. 2019.	</p>
+                    </a>
+                </div>          
+      
+
+                <!-- Single Album -->
+                <div class="col-12 single-album-item 2019">
+                    <div class="single-album col-6 col-sm-4 col-md-3 col-lg-2"  style="padding: 15px; float: left;">
+                        <img src="img/bg-img/33.png" alt="">
+                        
+                    </div> 
+                    <a href= "https://bmcmedgenomics.biomedcentral.com/articles/10.1186/s12920-019-0635-z" target="_blank"class="album-info-right col-6 col-sm-8 col-md-9 col-lg-10">
+                        <h5>	33.Differential alternative splicing regulation among hepatocellular carcinoma with different risk factors	</h5>		
+                        <p>	Young-Joo Jin, Seyoun Byun, Dongwook Kim, Seonggyun Han, John Chamberlin, Min Jung Kim, andYounghee Lee*	</p>		
+                        <p>	BMC Medical Genomics. 2019.	</p>
+                    </a>
+                </div>          
+      
+
+                <!-- Single Album -->
+                <div class="col-12 single-album-item 2019">
+                    <div class="single-album col-6 col-sm-4 col-md-3 col-lg-2"  style="padding: 15px; float: left;">
+                        <img src="img/bg-img/32.jpg" alt="">
+                        
+                    </div> 
+                    <a href= "https://bmcmedgenomics.biomedcentral.com/articles/10.1186/s12920-020-0680-7" target="_blank"class="album-info-right col-6 col-sm-8 col-md-9 col-lg-10">
+                        <h5>	32.Landscape of alternative splicing in HIV-infected CD4+ T-cells	</h5>		
+                        <p>	Seyoun Byun, Seonggyun Han, Yue Zheng, Vicente Planelles, andYounghee Lee*	</p>		
+                        <p>	BMC Medical Genomics 2019. (*Corresponding author)	</p>	
+                    </a>
+                </div>          
+      
+
+                <!-- Single Album -->
+                <div class="col-12 single-album-item 2019">
+                    <div class="single-album col-6 col-sm-4 col-md-3 col-lg-2"  style="padding: 15px; float: left;">
+                        <img src="img/bg-img/31.PNG" alt="">
+                        
+                    </div> 
+                    <a href= "https://www.bioconductor.org/packages/devel/bioc/vignettes/IMAS/inst/doc/IMAS.pdf" target="_blank"class="album-info-right col-6 col-sm-8 col-md-9 col-lg-10">
+                        <h5>	31.IMAS: Integrative analysis of Multi-omics data for Alternative Splicing	</h5>		
+                        <p>	Seonggyun Han, Heyim Jung, Dongwook Kimi, andYounghee Lee*	</p>		
+                        <p>	https://bioconductor.org/packages/release/bioc/html/IMAS.html	</p>	
+                    </a>
+                </div>          
+      
+
+                <!-- Single Album -->
+                <div class="col-12 single-album-item 2019">
+                    <div class="single-album col-6 col-sm-4 col-md-3 col-lg-2"  style="padding: 15px; float: left;">
+                        <img src="img/bg-img/30.jpg" alt="">
+                        
+                    </div> 
+                    <a href= "https://bmcmedgenomics.biomedcentral.com/articles/10.1186/s12920-018-0453-8" target="_blank"class="album-info-right col-6 col-sm-8 col-md-9 col-lg-10">
+                        <h5>	30.Identification of exon skipping events associated with in Alzheimer’s disease in the human hippocampus	</h5>		
+                        <p>	Seonggyun Han, Jason E Miller, Seyoun Byun, dokyoon Kim, Shannon L. Risacher, Andrew J Saykin,Younghee Lee*and Kwangsik Nho*	</p>		
+                        <p>	BMC Medical Genomics. 2019. (*Corresponding author)	</p>
+                    </a>
+                </div>          
+      
+
+                <!-- Single Album -->
+                <div class="col-12 single-album-item 2018">
+                    <div class="single-album col-6 col-sm-4 col-md-3 col-lg-2"  style="padding: 15px; float: left;">
+                        <img src="img/bg-img/29.jpg" alt="">
+                        
+                    </div> 
+                    <a href= "https://pubmed.ncbi.nlm.nih.gov/29888056/" target="_blank"class="album-info-right col-6 col-sm-8 col-md-9 col-lg-10">
+                        <h5>	29.Genetic variation affecting exon skipping contributes to hippocampal atrophy in Alzheimer’s disease	</h5>		
+                        <p>	Younghee Lee, Seonggyun Han, Dongwook Kim, Dokyoon Kim, Emrin Horgousluoglu, Shannon L. Risacher, Andrew J Saykin, and Kwangsik Nho*.	</p>		
+                        <p>	The AMIA SUMMIT. 2018. (*First author)	</p>	
+                    </a>
+                </div>          
+      
+
+                <!-- Single Album -->
+                <div class="col-12 single-album-item 2018">
+                    <div class="single-album col-6 col-sm-4 col-md-3 col-lg-2"  style="padding: 15px; float: left;">
+                        <img src="img/bg-img/28.jpg" alt="">
+                        
+                    </div> 
+                    <a href= "https://bmcmedgenomics.biomedcentral.com/articles/10.1186/s12920-018-0348-8" target="_blank"class="album-info-right col-6 col-sm-8 col-md-9 col-lg-10">
+                        <h5>	28.CAS-viewer: Web-based analysis and visualization of alternative splicing in cancer	</h5>		
+                        <p>	Seonggyun Han, Dongwook Kim, Youngjun Kim, Kanghoon Choi, Jason E. Miller, Dokyoon Kim,Younghee Lee*.	</p>		
+                        <p>	BMC Medical Genomics. 2018. (*Corresponding author)	</p>	
+                    </a>
+                </div>          
+      
+
+                <!-- Single Album -->
+                <div class="col-12 single-album-item 2018">
+                    <div class="single-album col-6 col-sm-4 col-md-3 col-lg-2"  style="padding: 15px; float: left;">
+                        <img src="img/bg-img/27.jpg" alt="">
+                        
+                    </div> 
+                    <a href= "https://pubmed.ncbi.nlm.nih.gov/30255815/" target="_blank"class="album-info-right col-6 col-sm-8 col-md-9 col-lg-10">
+                        <h5>	27.Rare variants in the Splicing Regulatory Elements of EXOC3L4 are associated with brain glucose metabolism in Alzheimer’s disease	</h5>		
+                        <p>	Jason Miller, Manu Shivakumar,Younghee Lee, Kwangsik Nho, and Dokyoon Kim	</p>		
+                        <p>	BMC Medical Genomics. 2018.	</p>	
+                    </a>
+                </div>          
+      
+
+                <!-- Single Album -->
+                <div class="col-12 single-album-item 2018">
+                    <div class="single-album col-6 col-sm-4 col-md-3 col-lg-2"  style="padding: 15px; float: left;">
+                        <img src="img/bg-img/26.png" alt="">
+                        
+                    </div> 
+                    <a href= "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0190708/" target="_blank"class="album-info-right col-6 col-sm-8 col-md-9 col-lg-10">
+                        <h5>	26.The effects of alternative splicing on miRNA binding sites on miRNA binding sites in bladder cancer	</h5>		
+                        <p>	Seonggyun Han, Dongwook Kim, Manu Shivakumar, Young-Ji Lee, Tullika Garg, Jason E. Miller, Juhan Kim, Dokyoon Kim*, and Younghee Lee.	</p>		
+                        <p>	PLoS One. 2018. (*Corresponding author)	</p>		
+                    </a>
+                </div>          
+      
+
+                <!-- Single Album -->
+                <div class="col-12 single-album-item 2018">
+                    <div class="single-album col-6 col-sm-4 col-md-3 col-lg-2"  style="padding: 15px; float: left;">
+                        <img src="img/bg-img/25.jpg" alt="">
+                        
+                    </div> 
+                    <a href= "https://pubmed.ncbi.nlm.nih.gov/29330282/" target="_blank"class="album-info-right col-6 col-sm-8 col-md-9 col-lg-10">
+                        <h5>	25.Population-dependent intron retention and DNA methylation in breast cancer	</h5>		
+                        <p>	Dongwook Kim, Manu Shivakumar, Seonggyun Han, Michael S Sinclair, Youngji Lee, Zheong Yonglan, Olufunmilayo I. Olopade, Dokyoon Kim*, andYounghee Lee*	</p>		
+                        <p>	Molecular Cancer Research. 2018. (*Corresponding author)	</p>	
+                    </a>
+                </div>          
+      
+
+                <!-- Single Album -->
+                <div class="col-12 single-album-item 2017">
+                    <div class="single-album col-6 col-sm-4 col-md-3 col-lg-2"  style="padding: 15px; float: left;">
+                        <img src="img/bg-img/24.jpg" alt="">
+                        
+                    </div> 
+                    <a href= "https://www.nature.com/articles/s41598-017-05744-9" target="_blank"class="album-info-right col-6 col-sm-8 col-md-9 col-lg-10">
+                        <h5>	24.Evidence of selection on loci affecting splicing in human populations and application to disease loci mapping	</h5>		
+                        <p>	Eric R. Gamazon*, Anuar Konkashbaev, Eske M. Derks, Nancy J. Cox, andYounghee Lee*.	</p>		
+                        <p>	Scientific Report 2017. (*Correponding author)	</p>
+                    </a>
+                </div>          
+      
+
+                <!-- Single Album -->
+                <div class="col-12 single-album-item 2017">
+                    <div class="single-album col-6 col-sm-4 col-md-3 col-lg-2"  style="padding: 15px; float: left;">
+                        <img src="img/bg-img/23.jpg" alt="">
+                        
+                    </div> 
+                    <a href= "https://bmcmedgenomics.biomedcentral.com/articles/10.1186/s12920-017-0269-y" target="_blank"class="album-info-right col-6 col-sm-8 col-md-9 col-lg-10">
+                        <h5>	23. Identification of epigenetic interactions between miRNA and DNA methylation associated with gene expression as potential prognostic markers in bladder cancer	</h5>		
+                        <p>	Manu Shivakumar*,Younghee Lee*, Lisa Bang, Tullika Gary, Kyong-ah Sohn, and Dokyoon Kiim.  	</p>		
+                        <p>	BMC Biomedical Genomics. 2017. (*Co-first author)	</p>	
+                    </a>
+                </div>          
+      
+
+                <!-- Single Album -->
+                <div class="col-12 single-album-item 2016">
+                    <div class="single-album col-6 col-sm-4 col-md-3 col-lg-2"  style="padding: 15px; float: left;">
+                        <img src="img/bg-img/22.PNG" alt="">
+                        
+                    </div> 
+                    <a href= "https://link.springer.com/chapter/10.1007/978-3-319-48335-1_7" target="_blank"class="album-info-right col-6 col-sm-8 col-md-9 col-lg-10">
+                        <h5>	22. Dietary Management Software for Chronic Kidney Disease: Current Status and Open Issues	</h5>		
+                        <p>	Xiaorui Chen, Maureen A. Murtaugh, Corinna Koebnick, Srinivasan Beddhu, Jennifer H. Garvin, Mike Conway,Younghee Lee, Ramkiran Gouripeddi, Gang Luo.	</p>		
+                        <p>	Health Information Science. 2016.	</p>		
+                    </a>
+                </div>          
+      
+
+                <!-- Single Album -->
+                <div class="col-12 single-album-item 2016">
+                    <div class="single-album col-6 col-sm-4 col-md-3 col-lg-2"  style="padding: 15px; float: left;">
+                        <img src="img/bg-img/21.jpg" alt="">
+                        
+                    </div> 
+                    <a href= "https://www.nature.com/articles/npjgenmed20166" target="_blank"class="album-info-right col-6 col-sm-8 col-md-9 col-lg-10">
+                        <h5>	21.Integrative genomics analyses unveil downstream biological effectors of disease-specific polymorphisms buried in intergenic regions	</h5>		
+                        <p>	H. Li, I. Achour, J. Berghout, V. Gardeux, J. Li, L. Bastarache,Younghee Lee,L. Pesce, X. Yang, K. S. Ramos, I. Foster, J. C. Denny, J. H. Moore, and Y. A. Lussier. 	</p>		
+                        <p>	Nature Genomic Medicine.2016.	</p>	
+                    </a>
+                </div>          
+      
+
+                <!-- Single Album -->
+                <div class="col-12 single-album-item 2016">
+                    <div class="single-album col-6 col-sm-4 col-md-3 col-lg-2"  style="padding: 15px; float: left;">
+                        <img src="img/bg-img/20.jpg" alt="">
+                        
+                    </div> 
+                    <a href= "https://www.nature.com/articles/ncomms10635" target="_blank"class="album-info-right col-6 col-sm-8 col-md-9 col-lg-10">
+                        <h5>	20. A variant at 9p21.3 functionally implicates CDKN2B in the etiology of pediatric B-cell precursor acute lymphoblastic leukemia	</h5>		
+                        <p>	Eric A Hungate, Sapana R Vora, Eric R Gamazon, Heng Xu, Timothy Best, Imge Hülür,Younghee Lee, Eva Ellinghaus, Laurent Orsi, Jacqueline Clavel, Elizabeth Milne, Mignon L Loh, Jun J Yang, Nancy J Cox, Andrew D Skol, and Kenan Onel.	</p>		
+                        <p>	Nature Communications.2016.	</p>
+                    </a>
+                </div>          
+      
+
+                <!-- Single Album -->
+                <div class="col-12 single-album-item 2014">
+                    <div class="single-album col-6 col-sm-4 col-md-3 col-lg-2"  style="padding: 15px; float: left;">
+                        <img src="img/bg-img/19.jpg" alt="">
+                        
+                    </div> 
+                    <a href= "https://pubmed.ncbi.nlm.nih.gov/25306246/" target="_blank"class="album-info-right col-6 col-sm-8 col-md-9 col-lg-10">
+                        <h5>	19. Differentiation of human pluripotent stem cells to cells similar to cord-blood endothelial colony–forming cells	</h5>		
+                        <p>	Nutan Prasain, Man Ryul Lee, Sasidhar Vemula, Jonathan Luke Meador, Momoko Yoshimoto, Michael J. Ferkowicz, Alexa Fett, Manav Gupta, Michael Ginsberg, Brian M. Rapp, Reza Saadatzadeh,Younghee Lee, Michael P. Murphy, Sherry L. Voytik-Harbin, Shahin Rafii, Hal E. Broxmeyer, and Mervin C. Yoder.	</p>		
+                        <p>	Nature Biotechnology.2014. doi:10.1038/nbt.3048	</p>
+                    </a>
+                </div>          
+      
+
+                <!-- Single Album -->
+                <div class="col-12 single-album-item 2014">
+                    <div class="single-album col-6 col-sm-4 col-md-3 col-lg-2"  style="padding: 15px; float: left;">
+                        <img src="img/bg-img/18.jpg" alt="">
+                        
+                    </div> 
+                    <a href= "https://pubmed.ncbi.nlm.nih.gov/25079962/" target="_blank"class="album-info-right col-6 col-sm-8 col-md-9 col-lg-10">
+                        <h5>	18. In Silico cancer cell versus stroma cellularity index computed from species-specific human and mouse transcriptome of xenograft models: towards accurate stromal targeting therapy assessment	</h5>		
+                        <p>	X. Yang, Y. Huang,Younghee Lee, V. Gardeus, I. Achour, K. Regan, E. Rebman, H. Li, and Y. Lussier.	</p>		
+                        <p>	BMC Medical Genomics2014.7(Suppl 1):S2	</p>
+                    </a>
+                </div>          
+      
+
+                <!-- Single Album -->
+                <div class="col-12 single-album-item 2013">
+                    <div class="single-album col-6 col-sm-4 col-md-3 col-lg-2"  style="padding: 15px; float: left;">
+                        <img src="img/bg-img/17.jpg" alt="">
+                        
+                    </div> 
+                    <a href= "https://pubmed.ncbi.nlm.nih.gov/23819917/" target="_blank"class="album-info-right col-6 col-sm-8 col-md-9 col-lg-10">
+                        <h5>	17. Curation-free biomodules mechanisms in prostate cancer predict recurrent disease	</h5>		
+                        <p>	J. L. Chen, A. Hsu, X. Yang, J. Li,Younghee Lee, G. Parinandi, H. Li, Y. A. Lussier.	</p>		
+                        <p>	BMC Medical Genomics.2013. 6(Suppl 2):S4.	</p>
+                    </a>
+                </div>          
+      
+
+                <!-- Single Album -->
+                <div class="col-12 single-album-item 2013">
+                    <div class="single-album col-6 col-sm-4 col-md-3 col-lg-2"  style="padding: 15px; float: left;">
+                        <img src="img/bg-img/16.jpg" alt="">
+                        
+                    </div> 
+                    <a href= "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3721168/" target="_blank"class="album-info-right col-6 col-sm-8 col-md-9 col-lg-10">
+                        <h5>	16. Network models of GWAS establish the centrality of protein interactions in complex disease traits	</h5>		
+                        <p>	Younghee Lee,H. Li, J. Li, E. Rebman, E. J. Gamazon, N. J. Cox, and Y. A. Lussier.J 	</p>		
+                        <p>	Am Med Inform Assoc.2013	</p>
+                    </a>
+                </div>          
+      
+
+                <!-- Single Album -->
+                <div class="col-12 single-album-item 2012">
+                    <div class="single-album col-6 col-sm-4 col-md-3 col-lg-2"  style="padding: 15px; float: left;">
+                        <img src="img/bg-img/15.jpg" alt="">
+                        
+                    </div> 
+                    <a href= "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4536549/" target="_blank"class="album-info-right col-6 col-sm-8 col-md-9 col-lg-10">
+                        <h5>	15. Hidden Dangers: A cryptic exon disrupts BRCA2 mRNA	</h5>		
+                        <p>	J. D. Fackenthal,Younghee Lee, and O.I.	</p>		
+                        <p>	 Olopade.Clinical Cancer Res.2012. 18(18):4865-7	</p>	
+                    </a>
+                </div>          
+      
+
+                <!-- Single Album -->
+                <div class="col-12 single-album-item 2012">
+                    <div class="single-album col-6 col-sm-4 col-md-3 col-lg-2"  style="padding: 15px; float: left;">
+                        <img src="img/bg-img/14.jpg" alt="">
+                        
+                    </div> 
+                    <a href= "https://pubmed.ncbi.nlm.nih.gov/23133393/" target="_blank"class="album-info-right col-6 col-sm-8 col-md-9 col-lg-10">
+                        <h5>	14. Variants affecting exon skipping contribute to complex traits	</h5>		
+                        <p>	Younghee Lee*,E. J. Gamazon, E. Rebman, Y. Lee, S. Lee, M.E. Dolan, N. J. Cox, and Y. A. Lussier.PLoS 	</p>		
+                        <p>	Genetics.2012. 8(10):e1002998. (*Corresponding authors)	</p>	
+                    </a>
+                </div>          
+      
+
+                <!-- Single Album -->
+                <div class="col-12 single-album-item 2012">
+                    <div class="single-album col-6 col-sm-4 col-md-3 col-lg-2"  style="padding: 15px; float: left;">
+                        <img src="img/bg-img/13.jpg" alt="">
+                        
+                    </div> 
+                    <a href= "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3277620/" target="_blank"class="album-info-right col-6 col-sm-8 col-md-9 col-lg-10">
+                        <h5>13. Complex disease networks of trait-associated SNPs unveiled by information theory.	</h5>		
+                        <p>	H. Li*,Younghee Lee*, J. Li, J. L. Chen, E. Rebman, K. Regan, and Y. A. Lussier.J 	</p>		
+                        <p>	Am Med Inform Assoc.2012.19(2):295-305. (*Co-first authors)	</p>	
+                    </a>
+                </div>          
+      
+
+                <!-- Single Album -->
+                <div class="col-12 single-album-item 2012">
+                    <div class="single-album col-6 col-sm-4 col-md-3 col-lg-2"  style="padding: 15px; float: left;">
+                        <img src="img/bg-img/12.jpg" alt="">
+                        
+                    </div> 
+                    <a href= "" target="_blank"class="album-info-right col-6 col-sm-8 col-md-9 col-lg-10">
+                        <h5>12. Translating mendelian and complex inheritance of Alzheimer's disease genes for predicting unique personal genome variants</h5>		
+                        <p>	K. Wang, K. Regan, E. Doughty, H. Li, J. Li,Younghee Lee, M. Kann, Y. A. Lussier. J 	</p>		
+                        <p>	AmMed Inform Assoc.2012.19(2):306-1611. MicroRNA expression characterizes oligometastase	</p>		
+                    </a>
+                </div>          
+      
+
+                <!-- Single Album -->
+                <div class="col-12 single-album-item 2011">
+                    <div class="single-album col-6 col-sm-4 col-md-3 col-lg-2"  style="padding: 15px; float: left;">
+                        <img src="img/bg-img/11.png" alt="">
+                        
+                    </div> 
+                    <a href= "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0028650" target="_blank"class="album-info-right col-6 col-sm-8 col-md-9 col-lg-10">
+                        <h5>	11. MicroRNA expression characterizes oligometastase	</h5>		
+                        <p>	Y. A. L., J. K. Salama, N. Khodarev, H. R. Xing, Y. Huang, M. D. Hasselle, Q. Zhang, R. Malik, T. E Darg, H. Fan, S. Perakis, M. Filippo, X. Yang, Younghee Lee, S. J. Chmura, S. Hellman, R. R. Weichselbaum.	</p>		
+                        <p>	PLoS ONE. 2011. 6(12):e28650	</p>	
+                    </a>
+                </div>          
+      
+
+                <!-- Single Album -->
+                <div class="col-12 single-album-item 2011">
+                    <div class="single-album col-6 col-sm-4 col-md-3 col-lg-2"  style="padding: 15px; float: left;">
+                        <img src="img/bg-img/10.jpeg" alt="">
+                        
+                    </div> 
+                    <a href= "https://academic.oup.com/bioinformatics/article/27/10/1444/259530" target="_blank"class="album-info-right col-6 col-sm-8 col-md-9 col-lg-10">
+                        <h5>	10. GO-Module: Functional synthesis and improved interpretation of gene ontology patterns	</h5>
+                        <p>	X. Yang, J. Li,Younghee Lee, and Y. A. Lussier.	</p>		
+                        <p>	Bioinformatics. 2011.27(10):1444-6	</p>	
+                    </a>
+                </div>          
+      
+
+                <!-- Single Album -->
+                <div class="col-12 single-album-item 2010">
+                    <div class="single-album col-6 col-sm-4 col-md-3 col-lg-2"  style="padding: 15px; float: left;">
+                        <img src="img/bg-img/9.jpg" alt="">
+                        
+                    </div> 
+                    <a href= "https://pubmed.ncbi.nlm.nih.gov/21347143/" target="_blank"class="album-info-right col-6 col-sm-8 col-md-9 col-lg-10">
+                        <h5>	9. Biomolecular systems of disease buried across multiple GWAS unveiled by information theory and ontology	</h5>		
+                        <p>	Younghee Lee, J. Li, E. Gamazon, J. L. Chen, A. Tikhomirov, N. J. Cox, and Y. A. Lussier.	</p>		
+                        <p>	Proceedings of the 2010 AMIA STBI. 2011.2010:31	</p>	
+                    </a>
+                </div>          
+      
+
+                <!-- Single Album -->
+                <div class="col-12 single-album-item 2010">
+                    <div class="single-album col-6 col-sm-4 col-md-3 col-lg-2"  style="padding: 15px; float: left;">
+                        <img src="img/bg-img/8.png" alt="">
+                        
+                    </div> 
+                    <a href= "https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000730" target="_blank"class="album-info-right col-6 col-sm-8 col-md-9 col-lg-10">
+                        <h5>	8. Network modeling identifies molecular functions targeted by miR-204 to suppress head and neck tumor metastasis	</h5>		
+                        <p>	Younghee Lee, X. Yang, Y. Huang1, H. Fan, Q. Zhang, Y. Wu, J. Li, R. Hasina, C. Cheng, M. Lingen, M. Gerstein, R. Weichselbaum, H. R. Xing, and Yves A. Lussier.	</p>		
+                        <p>	PLoS Comput Biol.2010.6(4):e1000730	</p>
+                    </a>
+                </div>          
+      
+
+                <!-- Single Album -->
+                <div class="col-12 single-album-item 2010">
+                    <div class="single-album col-6 col-sm-4 col-md-3 col-lg-2"  style="padding: 15px; float: left;">
+                        <img src="img/bg-img/7.jpg" alt="">
+                        
+                    </div> 
+                    <a href= "https://pubmed.ncbi.nlm.nih.gov/21044358/" target="_blank"class="album-info-right col-6 col-sm-8 col-md-9 col-lg-10">
+                        <h5>	7. Stromal microenvironment processes unveiled by biological component analysis of gene expression in xenograft tumor models.	</h5>		
+                        <p>	X. Yang*,Younghee Lee*,Y. Huang, J. L. Chen, H.R. Xing, and Y. A. Lussier.	</p>		
+                        <p>	BMC Bioinformatics.2010. 11: Suppl 9:S11. (*Co-first authors)	</p>
+                    </a>
+                </div>          
+      
+
+                <!-- Single Album -->
+                <div class="col-12 single-album-item 2010">
+                    <div class="single-album col-6 col-sm-4 col-md-3 col-lg-2"  style="padding: 15px; float: left;">
+                        <img src="img/bg-img/6.jpg" alt="">
+                        
+                    </div> 
+                    <a href= "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2878851/" target="_blank"class="album-info-right col-6 col-sm-8 col-md-9 col-lg-10">
+                        <h5>	6. CProtein Interaction Network Underpins Concordant Prognosis Among Heterogeneous Breast Cancer Signatures</h5>		
+                        <p>	J. L. Chen, L. Sam, Y. Huang,Younghee Lee, J. Li, Y. Liu, H. R. Xing, and Y. A. Lussier.	</p>		
+                        <p>	J Biomed Inform.2010.43(3):385-96	</p>	
+                    </a>
+                </div>          
+      
+
+                <!-- Single Album -->
+                <div class="col-12 single-album-item 2009">
+                    <div class="single-album col-6 col-sm-4 col-md-3 col-lg-2"  style="padding: 15px; float: left;">
+                        <img src="img/bg-img/5.jpg" alt="">
+                        
+                    </div> 
+                    <a href= "https://pubmed.ncbi.nlm.nih.gov/21340045/" target="_blank"class="album-info-right col-6 col-sm-8 col-md-9 col-lg-10">
+                        <h5>	5. Identification of common microRNA-mRNA regulatory biomodules in human epithelial cancer	</h5>		
+                        <p>	X. Yang,Younghee Lee, H. Fan, X. Sun, and Y. A. Lussier.	</p>		
+                        <p>	Chin. Sci. Bull.2009.55(31): 3576-3589	</p>	
+                    </a>
+                </div>          
+      
+
+                <!-- Single Album -->
+                <div class="col-12 single-album-item 2009">
+                    <div class="single-album col-6 col-sm-4 col-md-3 col-lg-2"  style="padding: 15px; float: left;">
+                        <img src="img/bg-img/4.jpg" alt="">
+                        
+                    </div> 
+                    <a href= "https://pubmed.ncbi.nlm.nih.gov/17132829/" target="_blank"class="album-info-right col-6 col-sm-8 col-md-9 col-lg-10">
+                        <h5>	4. ECgene: an alternative splicing database update.	</h5>		
+                        <p>	Y.S. Lee*,Younghee Lee*, B.J. Kim*, Y.A. Shin, S.Y. Nam, P.R. Kim, N.S. Kim, W.H. Chung, J.S. Kim, and S.H. Lee.	</p>		
+                        <p>	Nucleic Acids Res.2007.35(Database issue): D99–D103. (*Co-first authors)	</p>	
+                    </a>
+                </div>          
+      
+
+                <!-- Single Album -->
+                <div class="col-12 single-album-item 2009">
+                    <div class="single-album col-6 col-sm-4 col-md-3 col-lg-2"  style="padding: 15px; float: left;">
+                        <img src="img/bg-img/3.jpg" alt="">
+                        
+                    </div> 
+                    <a href= "https://pubmed.ncbi.nlm.nih.gov/15608289/" target="_blank"class="album-info-right col-6 col-sm-8 col-md-9 col-lg-10">
+                        <h5>	3. ECgene: genome annotation for alternative splicing	</h5>		
+                        <p>	P.R. Kim*, N.S. Kim*,Younghee Lee*, B.J. Kim*, Y.A. Shin, and S.H. Lee.	</p>		
+                        <p>	Nucleic Acids Res.2005.33(Database issue): D75-9. (*Co-first authors)	</p>
+                    </a>
+                </div>          
+      
+
+                <!-- Single Album -->
+                <div class="col-12 single-album-item 2009">
+                    <div class="single-album col-6 col-sm-4 col-md-3 col-lg-2"  style="padding: 15px; float: left;">
+                        <img src="img/bg-img/2.PNG" alt="">
+                        
+                    </div> 
+                    <a href= "https://www.jstage.jst.go.jp/article/gi1990/12/0/12_0_484/_pdf" target="_blank"class="album-info-right col-6 col-sm-8 col-md-9 col-lg-10">
+                        <h5>	2. A secondary database for journal search based on experimental materials and methods in Alzheimer disease research	</h5>		
+                        <p>	Younghee Lee, B.J. Kim, and I.S. Koh.	</p>		
+                        <p>	Genome Informatics2002	</p>	
+                    </a>
+                </div>          
+      
+
+                <!-- Single Album -->
+                <div class="col-12 single-album-item 2009">
+                    <div class="single-album col-6 col-sm-4 col-md-3 col-lg-2"  style="padding: 15px; float: left;">
+                        <img src="img/bg-img/1.PNG" alt="">
+                        
+                    </div> 
+                    <a href= "" target="_blank"class="album-info-right col-6 col-sm-8 col-md-9 col-lg-10">
+                        <h5>	1. Mitochondrial dysfunction and oxidative stress in cytotoxicity induced by amyloid peptide	</h5>		
+                        <p>	J.H. Song, J.S. Park, J.Y. Chio,Younghee Lee,and B.G. Han.	</p>		
+                        <p>	The Kor J of Gerontol.2000	</p>
+                    </a>
+                </div>          
+      
+
+               
+
+                
+                <!-- Single Album 
+                <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item b o">
+                    <div class="single-album">
+                        <img src="img/bg-img/a12.jpg" alt="">
+                        <div class="album-info">
+                            <a href="#">
+                                <h5>Beyonce</h5>
+                            </a>
+                            <p>Songs</p>
+                        </div>
+                    </div>
+                </div>
+                -->
+
+
+            </div>
+        </div>
+    </section>
+    <!-- ##### Album Catagory Area End ##### -->
+
+   
+
+    <!-- ##### Footer Area Start ##### -->
+    <footer class="footer-area">
+        <div class="container">
+            <div class="row d-flex flex-wrap align-items-center">
+                <div class="col-12 col-md-8 row">                   
+                    <a class="col-3" href="https://www.snu.ac.kr/"><img style="padding: 0 10px;" src="img/core-img/logo_snu.png" alt=""></a>
+                    <a class="col-3" href="https://ipenguinpoint.com/user/index.php"><img style="padding: 0 10px;" src="img/core-img/mhm-logo.png" alt=""></a>
+                    <a class="col-3" href="https://mousephenotype.kr/"><img style="padding: 0 10px;" src="img/core-img/kmpc2_logo_scroll.png" alt=""></a>
+                    <a class="col-3" href="https://www.healthbigdata.org/"><img style="padding: 0 10px;" src="img/core-img/mbrc.png" alt=""></a>
+                </div>   
+                    
+
+
+                
+                <div class="col-12 col-md-4">
+                    <p class="copywrite-text"><a href="#"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        Copyright &copy;<script>document.write(new Date().getFullYear());</script>LAB All rights reserved. This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- ##### Footer Area Start ##### -->
+
+
+    <!-- ##### All Javascript Script ##### -->
+    <!-- jQuery-2.2.4 js -->
+    <script src="js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="js/bootstrap/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="js/bootstrap/bootstrap.js"></script>
+    <!-- All Plugins js -->
+    <script src="js/plugins/plugins.js"></script>
+    <!-- Active js -->
+    <script src="js/active.js"></script>
+    <script>
+        firebase.auth().onAuthStateChanged(function (user) {
+            if(user){
+                document.getElementById('loginBtn').style.cssText="display: none;"
+                document.getElementById('logoutBtn').style.cssText="display: block;"
+            }else{
+                document.getElementById('loginBtn').style.cssText="display: block;"
+                document.getElementById('logoutBtn').style.cssText="display: none;"
+            }
+            }
+        
+        );
+
+        $('#logoutBtn').click(function(){
+            window.location.href = "index.html";
+            firebase.auth().signOut();
+           
+        })
+
+    </script>
+    <style>
+        .oneMusic-albums > .single-album-item > .single-album img{
+            height: 10rem;
+            width: 100%;
+            
+        }
+    </style>
+</body>
+
+
+</html>

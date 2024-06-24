@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>SNU VM BI LAB</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="img/core-img/favicon.ico">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    
+  <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-storage.js"></script>
+  
+  <script>
+    var firebaseConfig = {
+      apiKey: process.env.FIREBASE_API_KEY,
+      authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+      projectId: process.env.FIREBASE_PROJECT_ID,
+      storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+      messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
+      appId: process.env.FIREBASE_APP_ID,
+      measurementId: process.env.FIREBASE_MEASUREMENT_ID
+    };
+    firebase.initializeApp(firebaseConfig);
+    </script>
+
+    <!-- Preloader -->
+    <div class="preloader d-flex align-items-center justify-content-center">
+        <div class="lds-ellipsis">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+
+    <!-- ##### Header Area Start ##### -->
+    <header class="header-area">
+        <!-- Navbar Area -->
+        <div class="oneMusic-main-menu">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container">
+                    <!-- Menu -->
+                    <nav class="classy-navbar justify-content-between" id="oneMusicNav">
+
+                        <!-- Nav brand -->
+                        <a href="index.html" class="nav-brand"><img src="img/core-img/logo.png" alt=""></a>
+
+                        <!-- Navbar Toggler -->
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
+
+                        <!-- Menu -->
+                        <div class="classy-menu">
+
+                            <!-- Close Button -->
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+
+                            <!-- Nav Start -->
+                           <div class="classynav">
+                            <ul style="margin-bottom: 0;">
+                                <li><a href="index.html">Home</a></li>
+                                <li><a href="research.html">Research</a></li>
+                                <li><a href="people.html?peo=1">People</a>
+                                    <ul class="dropdown">
+                                        <li><a href="people.html?peo=1">Professor</a></li>
+                                        <li><a href="people.html?peo=2">Member </a></li>
+                                        <li><a href="people.html?peo=3">Alumni</a></li>                                                                                             
+                                    </ul>
+                                    </li>
+                                    <li><a href="publication.html">Publication</a></li>                                    
+                                    <li><a href="notice.html">Board</a>
+                                        <ul class="dropdown">
+                                            <li><a href="notice.html">Notice</a></li>
+                                            <li><a href="board.html">Gallery </a></li>
+                                            <li><a href="schedule.html">Calendar</a></li>                                                                                       
+                                        </ul>
+                                    </li>
+                                    <li><a href="contact.html">Contact</a></li>
+                                </ul>
+
+                                <!-- Login/Register & Cart Button -->
+                                <div class="login-register-cart-button d-flex align-items-center">
+                                    <!-- Login/Register -->
+                                    <div class="login-register-btn mr-50">
+                                        <a href="login.html" id="loginBtn" style="display: block;">Login / Register</a>
+                                        <a id="logoutBtn" style="display: none;">Logout</a>
+                                    </div>                              
+                                </div>
+                            </div>
+                            <!-- Nav End -->
+
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ##### Header Area End ##### -->
+
+    <!-- ##### Breadcumb Area Start ##### -->
+    <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/breadcumb3.jpg);">
+        <div class="bradcumbContent">
+            <p>See what’s new</p>
+            <h2>Login</h2>
+        </div>
+    </section>
+    <!-- ##### Breadcumb Area End ##### -->
+
+    <!-- ##### Login Area Start ##### -->
+    <section class="login-area section-padding-100">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-8">
+                    <div class="login-content">
+                        <h3>Register</h3>
+                        <!-- Login Form -->
+                        <div class="login-form">
+                            
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Email address</label>
+                                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter E-mail">
+                                    <small id="emailHelp" class="form-text text-muted"><i class="fa fa-lock mr-2"></i>We'll never share your email with anyone else.</small>
+                                </div>
+                                <div class="form-group mt-15 ">
+                                    <label for="exampleInputPassword1">Password</label>
+                                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                </div>
+                                <div class="form-group mt-15">
+                                    <label for="exampleInputPassword1">Password reconfirm</label>
+                                    <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password">
+                                    <small id="passwordHelp" class="form-text" style="color:red; display: none;"><i class="fa fa-lock mr-2" style="color: red;"></i>The password you entered does not match.</small>
+                                </div>
+                                <div class="form-group mt-15">
+                                    <label for="exampleInputPassword1">name</label>
+                                    <input type="emailHelp" class="form-control" id="exampleInputName" placeholder="Name">
+                                </div>
+                                
+                                <button class="btn oneMusic-btn mt-30" id="reg">Register</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ##### Login Area End ##### -->
+
+    <!-- ##### Footer Area Start ##### -->
+    <footer class="footer-area">
+        <div class="container">
+            <div class="row d-flex flex-wrap align-items-center">
+                <div class="col-12 col-md-8 row">                   
+                    <a class="col-3" href="https://www.snu.ac.kr/"><img style="padding: 0 10px;" src="img/core-img/logo_snu.png" alt=""></a>
+                    <a class="col-3" href="https://ipenguinpoint.com/user/index.php"><img style="padding: 0 10px;" src="img/core-img/mhm-logo.png" alt=""></a>
+                    <a class="col-3" href="https://mousephenotype.kr/"><img style="padding: 0 10px;" src="img/core-img/kmpc2_logo_scroll.png" alt=""></a>
+                    <a class="col-3" href="https://www.healthbigdata.org/"><img style="padding: 0 10px;" src="img/core-img/mbrc.png" alt=""></a>
+                </div>   
+                    
+
+
+                
+                <div class="col-12 col-md-4">
+                    <p class="copywrite-text"><a href="#"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        Copyright &copy;<script>document.write(new Date().getFullYear());</script>LAB All rights reserved. This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- ##### Footer Area Start ##### -->
+
+
+    <!-- ##### All Javascript Script ##### -->
+    <!-- jQuery-2.2.4 js -->
+    <script src="js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="js/bootstrap/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="js/bootstrap/bootstrap.min.js"></script>
+    <!-- All Plugins js -->
+    <script src="js/plugins/plugins.js"></script>
+    <!-- Active js -->
+    <script src="js/active.js"></script>
+
+    <script>
+        const db = firebase.firestore();
+       
+        const equle = function(){
+            
+            if(document.getElementById("exampleInputPassword1").value ===document.getElementById("exampleInputPassword2").value ){
+                document.getElementById("passwordHelp").style.cssText="display: none;"
+
+            }else{
+                document.getElementById("passwordHelp").style.cssText="display: block;"
+            }
+
+        }
+
+        document.getElementById('exampleInputPassword2').addEventListener('input', equle);
+
+
+
+        $('#reg').click(function(){
+
+            if(document.getElementById("exampleInputPassword1").value ===document.getElementById("exampleInputPassword2").value){
+                var email = $('#exampleInputEmail1').val();
+                var password = $('#exampleInputPassword1').val();
+                
+                firebase.auth().createUserWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    // Signed in
+                    var user = userCredential.user;
+                    console.log(user);
+                    var user = userCredential.user;
+                    var pus= {
+                        name : $('#exampleInputName').val(),
+                        email: $('#exampleInputEmail1').val(),
+                    }
+
+                    db.collection('id').add(pus).then(()=>{
+                        alert("회원가입 성공");    
+                        console.log(1);
+                        window.location.href="login.html";
+
+                    }).catch((err)=>{
+                        alert('실패');
+                        console.log(err);
+                        console.log(2);
+                        window.location.href="login.html";
+                    })
+                    
+                })
+                .catch((error) => {
+                    
+                   
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                    console.log(errorMessage);
+                    // ..
+                });} })
+
+
+
+            firebase.auth().onAuthStateChanged(function (user) {
+            if(user){
+                document.getElementById('loginBtn').style.cssText="display: none;"
+                document.getElementById('logoutBtn').style.cssText="display: block;"
+            }else{
+                document.getElementById('loginBtn').style.cssText="display: block;"
+                document.getElementById('logoutBtn').style.cssText="display: none;"
+            }
+            }
+        
+        );
+
+        $('#logoutBtn').click(function(){
+            window.location.href = "index.html";
+            firebase.auth().signOut();
+           
+        })
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <!-- Title -->
+    <title>SNU VM BI LAB</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="img/core-img/favicon.ico">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-storage.js"></script>
+    
+    <script>
+        var firebaseConfig = {
+          apiKey: process.env.FIREBASE_API_KEY,
+          authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+          projectId: process.env.FIREBASE_PROJECT_ID,
+          storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+          messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
+          appId: process.env.FIREBASE_APP_ID,
+          measurementId: process.env.FIREBASE_MEASUREMENT_ID
+        };
+        firebase.initializeApp(firebaseConfig);
+        </script>
+    <!-- Preloader -->
+    <div class="preloader d-flex align-items-center justify-content-center">
+        <div class="lds-ellipsis">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+
+    <!-- ##### Header Area Start ##### -->
+    <header class="header-area">
+        <!-- Navbar Area -->
+        <div class="oneMusic-main-menu">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container">
+                    <!-- Menu -->
+                    <nav class="classy-navbar justify-content-between" id="oneMusicNav">
+
+                        <!-- Nav brand -->
+                        <a href="index.html" class="nav-brand"><img src="img/core-img/logo.png" alt=""></a>
+
+                        <!-- Navbar Toggler -->
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
+
+                        <!-- Menu -->
+                        <div class="classy-menu">
+
+                            <!-- Close Button -->
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+
+                            <!-- Nav Start -->
+                           <div class="classynav">
+                            <ul style="margin-bottom: 0;">
+                                <li><a href="index.html">Home</a></li>
+                                <li><a href="research.html">Research</a></li>
+                                <li><a href="people.html?peo=1">People</a>
+                                    <ul class="dropdown">
+                                        <li><a href="people.html?peo=1">Professor</a></li>
+                                        <li><a href="people.html?peo=2">Member </a></li>
+                                        <li><a href="people.html?peo=3">Alumni</a></li>                                                                                             
+                                    </ul>
+                                    </li>
+                                    <li><a href="publication.html">Publication</a></li>                                    
+                                    <li><a href="notice.html">Board</a>
+                                        <ul class="dropdown">
+                                            <li><a href="notice.html">Notice</a></li>
+                                            <li><a href="board.html">Gallery </a></li>
+                                            <li><a href="schedule.html">Schedule</a></li>                                                                                       
+                                        </ul>
+                                    </li>
+                                    <li><a href="contact.html">Contact</a></li>
+                                </ul>
+
+                                <!-- Login/Register & Cart Button -->
+                                <div class="login-register-cart-button d-flex align-items-center">
+                                    <!-- Login/Register -->
+                                    <div class="login-register-btn mr-50">
+                                        <a href="login.html" id="loginBtn" style="display: block;">Login / Register</a>
+                                        <a id="logoutBtn" style="display: none;">Logout</a>
+                                    </div>                              
+                                </div>
+                            </div>
+                            <!-- Nav End -->
+
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ##### Header Area End ##### -->
+
+    <!-- ##### Breadcumb Area Start ##### -->
+    <section class="breadcumb-area bg-img bg-overlay" style="">
+        <div class="bradcumbContent">
+            <p>SNU VM LAB</p>
+            <h2>PEOPLE</h2>
+        </div>
+    </section>
+    <!-- ##### Breadcumb Area End ##### -->
+
+
+
+
+    <!-- ##### Events Area Start ##### -->
+    <section class="events-area section-padding-50-0 ">
+
+        
+
+
+        <div class="container">   
+            
+            
+            <div class="oneMusic-tabs-content">
+
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" id="pro" role="presentation">
+                      <button class="nav-link" style="font-size: 16px; font-weight: 700;" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="false">Professor</button>
+                    </li>
+                    <li class="nav-item" id="mem" role="presentation">
+                      <button class="nav-link" style="font-size: 16px; font-weight: 700;" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Member</button>
+                    </li>
+                    <li class="nav-item" id="alu" role="presentation">
+                      <button class="nav-link" style="font-size: 16px; font-weight: 700;" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Alumni</button>
+                    </li>
+                </ul>
+
+
+            </div>
+
+
+            <!-- ##### Tabs ##### -->
+            <div class="col-12 tab-content" id="myTabContent">
+          
+                 
+                <!-- Single Event Area -->
+                <div class="tab-pane fade  "  id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+                    <div class="row d-flex">
+                        <div class="wow fadeInUp col-12 col-lg-4 order-1 order-md-0 order-lg-0 ">
+                            <div class="single-event-area mb-30">
+                                <div class="event-thumbnail">
+                                    <img src="img/imgm/professor.png" alt="">
+                                </div>
+                                <div class="event-text">
+                                    <h4>Professor</h4>
+                                    <div class="event-meta-data">
+                                        <a href="#" class="event-place">Lee</a>
+                                    </div>
+                                </div>
+                            </div>
+                                 
+                        </div>
+    
+                        <div class="col-12 col-lg-8">
+                            <h3>Professor</h3>
+                            <p>College of Veterinary Medicine Seoul National University</p>
+                            <h3>Lab</h3>
+                            <p>Lab. of Veterinary Informatics (Bioinformatics)</p>
+                            <h3>Career</h3>
+                            <p>Current. Professor of Veterinary Medicine at Seoul National University (Animal Information Management Office)<br>
+                                Current. Additional Professor of Biomedical Information at the University of Utah in the United States<br>
+                                Current. Director of the Korean Medical Information Society<br>
+                                Current. member of the International Cooperation Committee of the Korean Society of Biological Information<br>
+                                Ex. served as bio-information director of the Korean Medical Information Association.<br>
+                                Ex. Professor of Biomedical Information at the University of Utah in the United States.<br>
+                                Ex. Professor of Graduate School of Biomedical Information at the University of Utah in Asia.<br>
+                                </p>
+                        </div > 
+                    </div>
+                   
+                    
+                </div>
+                
+
+            
+
+                <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0"> 
+                    <div class="row d-flex banana">      
+                        
+                        
+                        <!-- Single Event Area -->
+                        <div style="" class="col-6 col-md-4 col-lg-2 order-lg-0 wow fadeInUp" data-wow-delay="100ms" data-bs-toggle="collapse" href="#collapse1" role="button" aria-expanded="false" aria-controls="collapse1">
+                            <div class="single-event-area mb-30" >
+                                <div class="event-thumbnail">
+                                    <img src="img/people/sooah_cho.png" alt="">
+                                </div>
+                                <div class="event-text">
+                                    <h4>Soo-ah Cho</h4>
+                                    <div class="event-meta-data">
+                                        <a href="#" class="event-place">M.S-Ph.D</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+        
+          
+        
+        
+                        <!-- Single Event Area -->
+                        <div style="" class="col-6 col-md-4 col-lg-2 order-lg-0 wow fadeInUp" data-wow-delay="200ms" data-bs-toggle="collapse" href="#collapse2" role="button" aria-expanded="false" aria-controls="collapse2">
+                            <div class="single-event-area mb-30">
+                                <div class="event-thumbnail">
+                                    <img src="img/people/younghan_song.jpg" alt="">
+                                </div>
+                                <div class="event-text">
+                                    <h4>Younghan Song</h4>
+                                    <div class="event-meta-data">
+                                        <a href="#" class="event-place">M.S-Ph.D</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+        
+        
+                        <!-- Single Event Area -->
+                        <div style="" class="col-6 col-md-4 col-lg-2 order-1 order-md-0 order-lg-0 wow fadeInUp" data-wow-delay="300ms" data-bs-toggle="collapse" href="#collapse3" role="button" aria-expanded="false" aria-controls="collapse3">
+                            <div class="single-event-area mb-30">
+                                <div class="event-thumbnail">
+                                    <img src="img/people/byungwook_oh.jpg" alt="">
+                                </div>
+                                <div class="event-text">
+                                    <h4>Byungwook Oh</h4>
+                                    <div class="event-meta-data">
+                                        <a href="#" class="event-place">M.S student</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+        
+        
+                        
+                        <!-- Single Event Area -->
+                        <div style="" class="col-6 col-md-4 col-lg-2 order-md-1 order-1 order-lg-0 wow fadeInUp" data-wow-delay="400ms" data-bs-toggle="collapse" href="#collapse4" role="button" aria-expanded="false" aria-controls="collapse4">
+                            <div class="single-event-area mb-30">
+                                <div class="event-thumbnail">
+                                    <img src="img/people/arok_choi.jpg" alt="">
+                                </div>
+                                <div class="event-text">
+                                    <h4>Arok Choi</h4>
+                                    <div class="event-meta-data">
+                                        <a href="#" class="event-place">M.S-Ph.D</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>  
+                        
+                        <!-- Single Event Area -->
+                        <div style="" class="col-6 col-md-4 col-lg-2 order-md-1 order-1 order-lg-0 wow fadeInUp" data-wow-delay="500ms" data-bs-toggle="collapse" href="#collapse5" role="button" aria-expanded="false" aria-controls="collapse5">
+                            <div class="single-event-area mb-30 ">
+                                <div class="event-thumbnail">
+                                    <img src="img/people/wongyung_choi.jpg" alt="">
+                                </div>
+                                <div class="event-text">
+                                    <h4>Wongyung Choi</h4>
+                                    <div class="event-meta-data">
+                                        <a href="#" class="event-place">Undergraduate researcher</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+
+                        <!-- Single Event Area -->
+                        <div style="" class="col-6 col-md-4 col-lg-2 order-md-1 order-1 order-lg-0 wow fadeInUp" data-wow-delay="600ms" data-bs-toggle="collapse" href="#collapse6" role="button" aria-expanded="false" aria-controls="collapse6">
+                            <div class="single-event-area mb-30 ">
+                                <div class="event-thumbnail">
+                                    <img src="img/people/ingi_song.jpg" alt="">
+                                </div>
+                                <div class="event-text">
+                                    <h4>Ingi Song</h4>
+                                    <div class="event-meta-data">
+                                        <a href="#" class="event-place">Undergraduate researcher</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- ##### Featured Artist Area Start ##### -->
+                        <div class="col-12 order-lg-0">
+                            <section class="featured-artist-area section-padding-100 bg-img bg-overlay bg-fixed collapse" id="collapse1" style=" padding: 0 12px 0 12px; margin-bottom: 30px;" >
+                                <div class="container">
+                                    <div class="row align-items-end">
+                                        
+                                        <div class="col-12">
+                                            <div class="featured-artist-content">
+                                                <!-- Section Heading -->
+                                                <div class="section-heading white text-left mb-30">
+                                                    <h2>introduction</h2>
+                                                    <p class="mb-15">Arok Choi joined VMBI Lab as a graduate student in 2023. Within the MyHealthMart project, she is responsible for the UX/UI design based on the concept of PHR digital assetization and valuation.</p>
+                                                    <h2 >EDUCATION</h2>
+                                                    <p class="mb-15">MS-PhD integrated program, Bioinformatics and Veterinary Medical Informatics, Seoul National University <br>B.S. in Biology, Kyung Hee University (Seoul, Republic of Korea)</p>
+                                                </div>
+                                                <p>email : arok3733@snu.ac.kr &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; research : Data visualization</p>                    
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                        <!-- ##### Featured Artist Area End ##### -->    
+                        
+                        <!-- ##### Featured Artist Area Start ##### -->
+                        <div class="col-12 order-lg-0">
+                            <section class="featured-artist-area section-padding-100 bg-img bg-overlay bg-fixed collapse " id="collapse2" style="background-image: url(img/bg-img/bg-4.jpg); padding: 0 12px 0 12px; margin-bottom: 30px;">
+                                <div class="container">
+                                    <div class="row align-items-end">
+
+                                        <div class="col-12">
+                                            <div class="featured-artist-content">
+                                                <!-- Section Heading -->
+                                                <div class="section-heading white text-left mb-30">
+                                                    <h2>introduction</h2>
+                                                    <p class="mb-15">Younghan participated in the lab from the second semester of 2022. He is currently a teaching assistant and is interested in cohort db-based research and omics analysis research.</p>
+                                                    <h2 >EDUCATION</h2>
+                                                    <p class="mb-15">MS-PhD integrated program, Bioinformatics and Veterinary Medical Informatics, Seoul National University  <br>BS in Biology and Computer Science (Handong University, Pohang)</p>
+                                                </div>
+                                                <p>email : 0han0509@snu.ac.kr &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; research : bioinfomatics</p>      
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                        <!-- ##### Featured Artist Area End ##### -->      
+                        
+                        <!-- ##### Featured Artist Area Start ##### -->
+                        <div class="col-12 order-1 order-md-0 order-lg-0">
+                            <section class="featured-artist-area section-padding-100 bg-img bg-overlay bg-fixed collapse " id="collapse3" style="background-image: url(img/bg-img/bg-4.jpg); padding: 0 12px 0 12px; margin-bottom: 30px;">
+                                <div class="container">
+                                    <div class="row align-items-end">
+
+                                        <div class="col-12">
+                                            <div class="featured-artist-content">
+                                                <!-- Section Heading -->
+                                                <div class="section-heading white text-left mb-30">
+                                                    <h2>introduction</h2>
+                                                    <p class="mb-15">Byungwook joined the lab as MS student in 2023. He is currently leading the AI Chat Vet research projects.</p>
+                                                    <h2 >EDUCATION</h2>
+                                                    <p class="mb-15">MS, Bioinformatics and Veterinary Medical Informatics, Seoul National University<br>DVM in Vetrinary Medicine (Seoul National University) </p>
+                                                </div>
+                                                <p>email : q33221122@snu.ac.kr &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; research : epidemiology</p>     
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                        <!-- ##### Featured Artist Area End ##### -->       
+                        
+                        <!-- ##### Featured Artist Area Start ##### -->
+                        <div class="col-12 order-1 order-md-2 order-lg-0">
+                            <section class="featured-artist-area section-padding-100 bg-img bg-overlay bg-fixed collapse " id="collapse4" style="background-image: url(img/bg-img/bg-4.jpg); padding: 0 12px 0 12px; margin-bottom: 30px;">
+                                <div class="container">
+                                    <div class="row align-items-end">
+
+                                        <div class="col-12">
+                                            <div class="featured-artist-content">
+                                                <!-- Section Heading -->
+                                                <div class="section-heading white text-left mb-30">
+                                                    <h2>introduction</h2>
+                                                    <p class="mb-15">Arok Choi joined VMBI Lab as a graduate student in 2023. Within the MyHealthMart project, she is responsible for the UX/UI design based on the concept of PHR digital assetization and valuation.</p>
+                                                    <h2 >EDUCATION</h2>
+                                                    <p class="mb-15">MS-PhD integrated program, Bioinformatics and Veterinary Medical Informatics, Seoul National University <br>B.S. in Biology, Kyung Hee University (Seoul, Republic of Korea)</p>
+                                                </div>
+                                                <p>email : arok3733@snu.ac.kr &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; research : Data visualization</p>         
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                        <!-- ##### Featured Artist Area End ##### -->       
+                        
+        
+        
+                        <!-- ##### Featured Artist Area Start ##### -->
+                        <div class="col-12 order-1 order-md-2 order-lg-0">
+                            <section class="featured-artist-area section-padding-100 bg-img bg-overlay bg-fixed collapse " id="collapse5" style="background-image: url(img/bg-img/bg-4.jpg); padding: 0 12px 0 12px; margin-bottom: 30px;">
+                                <div class="container">
+                                    <div class="row align-items-end">
+
+                                        <div class="col-12">
+                                            <div class="featured-artist-content">
+                                                <!-- Section Heading -->
+                                                <div class="section-heading white text-left mb-30">
+                                                    <h2>introduction</h2>
+                                                    <p class="mb-15">Wongyung is an undergraduate student who joined my lab in June 2022. He is interested in veterinary/medical informatics by analyzing Electronic Health Records. Further, he is using artificial intelligence for analysis of multi-omics data. His main goal is to provide predictive, preventive and personal(individual) health care.</p>
+                                                    <h2 >EDUCATION</h2>
+                                                    <p class="mb-15">Pre-veterinary Course, College of Veterinary Medicine, Seoul National University</p>
+                                                </div>
+                                                <p>email : ss &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; research : ss</p>     
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                        <!-- ##### Featured Artist Area End ##### -->    
+
+                        <!-- ##### Featured Artist Area Start ##### -->
+                        <div class="col-12 order-1 order-md-2 order-lg-0">
+                            <section class="featured-artist-area section-padding-100 bg-img bg-overlay bg-fixed collapse " id="collapse6" style="background-image: url(img/bg-img/bg-4.jpg); padding: 0 12px 0 12px; margin-bottom: 30px;">
+                                <div class="container">
+                                    <div class="row align-items-end">
+
+                                        <div class="col-12">
+                                            <div class="featured-artist-content">
+                                                <!-- Section Heading -->
+                                                <div class="section-heading white text-left mb-30">
+                                                    <h2>introduction</h2>
+                                                    <p class="mb-15">Ingi joined the lab as undergraduate student and Myhealthmart team in 2022. He is currently  conducting Myhealthmart projects and research on PHR price. </p>
+                                                    <h2 >EDUCATION</h2>
+                                                    <p class="mb-15">College of dentistry, Yonsei University</p>
+                                                </div>
+                                                <p>email : popthunder@yonsei.ac.kr &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; research : </p>     
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                        <!-- ##### Featured Artist Area End ##### -->      
+                        
+                    
+                                
+        
+                        
+                           
+                        
+                        
+        
+                        <!-- Single Event Area -->
+                        <div style="" class="col-6 col-md-4 col-lg-2 order-md-3 order-2 order-lg-1 wow fadeInUp" data-wow-delay="700ms" data-bs-toggle="collapse" href="#collapse7" role="button" aria-controls="collapse7" aria-expanded="ture">
+                            <div class="single-event-area mb-30 ">
+                                <div class="event-thumbnail">
+                                    <img src="img/people/yeongmin_kim.jpg" alt="">
+                                </div>
+                                <div class="event-text">
+                                    <h4>Yeongmin Kim</h4>
+                                    <div class="event-meta-data">
+                                        <a href="#" class="event-place">Undergraduate researcher</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>    
+                        
+                        <!-- Single Event Area -->
+                        <div style="" class="col-6 col-md-4 col-lg-2 order-md-3 order-2 order-lg-1 wow fadeInUp" data-wow-delay="800ms" data-bs-toggle="collapse" href="#collapse8" role="button" aria-expanded="false" aria-controls="collapse8">
+                            <div class="single-event-area mb-30 ">
+                                <div class="event-thumbnail">
+                                    <img src="img/people/hyeongjin_ju.jpg" alt="">
+                                </div>
+                                <div class="event-text">
+                                    <h4>Hyeongjin Ju</h4>
+                                    <div class="event-meta-data">
+                                        <a href="#" class="event-place">Undergraduate researcher</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+        
+                        <!-- Single Event Area -->
+                        <div style="" class="col-6 col-md-4 col-lg-2 order-md-3 order-2 order-lg-1 wow fadeInUp" data-wow-delay="800ms" data-bs-toggle="collapse" href="#collapse9" role="button" aria-expanded="false" aria-controls="collapse9">
+                            <div class="single-event-area mb-30 ">
+                                <div class="event-thumbnail">
+                                    <img src="img/people/Nahyun_Kim.jpg" alt="">
+                                </div>
+                                <div class="event-text">
+                                    <h4>Nahyun Kim</h4>
+                                    <div class="event-meta-data">
+                                        <a href="#" class="event-place">undergraduate student</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+                        
+                        <!-- ##### Featured Artist Area Start ##### -->
+                        <div class="col-12 order-2 order-md-3 order-lg-1">
+                            <section class="featured-artist-area section-padding-100 bg-img bg-overlay bg-fixed collapse " id="collapse7" style="background-image: url(img/bg-img/bg-4.jpg); padding: 0 12px 0 12px; margin-bottom: 30px;">
+                                <div class="container">
+                                    <div class="row align-items-end">
+
+                                        <div class="col-12">
+                                            <div class="featured-artist-content">
+                                                <!-- Section Heading -->
+                                                <div class="section-heading white text-left mb-30">
+                                                    <h2>introduction</h2>
+                                                    <p class="mb-15">Yeongmin is interested in the application of artificial intelligence to the biological domain, who joined this lab in July 2022. He researched normalizing flow and graph neural network models with various datasets. </p>
+                                                    <h2 >EDUCATION</h2>
+                                                    <p class="mb-15">Currently enrolled in the School of Computing, KAIST. Going to move to Department of Mathematics. (Double major: Industrial & Systems Engineering)</p>
+                                                </div>
+                                                <p>email : cytotoxicity8@kaist.ac.kr &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; research : </p>  
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                        <!-- ##### Featured Artist Area End ##### -->       
+                        
+                        <!-- ##### Featured Artist Area Start ##### -->
+                        <div class="col-12 order-2 order-md-3 order-lg-1">
+                            <section class="featured-artist-area section-padding-100 bg-img bg-overlay bg-fixed collapse" id="collapse8" style="background-image: url(img/bg-img/bg-4.jpg); padding: 0 12px 0 12px; margin-bottom: 30px;" >
+                                <div class="container">
+                                    <div class="row align-items-end">
+
+                                        <div class="col-12">
+                                            <div class="featured-artist-content">
+                                                <!-- Section Heading -->
+                                                <div class="section-heading white text-left mb-30">
+                                                    <h2>introduction</h2>
+                                                    <p class="mb-15"> belong to the lab as an undergraduate research student now. I am interested in statistical analysis and front-end development, and I am studying both the web and apps.
+                                                        I'm working on the MyHealthMart project. </p>
+                                                    <h2 >EDUCATION</h2>
+                                                    <p class="mb-15">Currently enrolled in the College of Veterinary Medicine, Seoul National University</p>
+                                                </div>
+                                                <p>email : pon07029@snu.ac.kr &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; research : </p>  
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+
+
+                        
+                        <!-- ##### Featured Artist Area Start ##### -->
+                        <div class="col-12 order-2 order-md-3 order-lg-2">
+                            <section class="featured-artist-area section-padding-100 bg-img bg-overlay bg-fixed collapse" id="collapse9" style="background-image: url(img/bg-img/bg-4.jpg); padding: 0 12px 0 12px; margin-bottom: 30px;">
+                                <div class="container">
+                                    <div class="row align-items-end">
+
+                                        <div class="col-12">
+                                            <div class="featured-artist-content">
+                                                <!-- Section Heading -->
+                                                <div class="section-heading white text-left mb-30">
+                                                    <h2>introduction</h2>
+                                                    <p class="mb-15">Nahyun joined the lab as undergraduate student and Myhealthmart team in 2023. She is currently conducting Myhealthmart projects and research on PHR price.</p>
+                                                    <h2 >EDUCATION</h2>
+                                                    <p class="mb-15">KAIST</p>
+                                                </div>
+                                                <p>email : hyun0414@kaist.ac.kr &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; research : </p>     
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>             
+                    </div>   
+    
+    
+                    
+ 
+
+                        
+                    
+                
+
+      
+                                    
+                </div>
+                <!-- ####dkf알룸리ㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣ End ##### -->
+
+
+                <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0"> 
+                    <div class="row d-flex banana">                    
+    
+                        <div class="row d-flex banana">      
+                        
+                        
+                        <!-- Single Event Area -->
+                        <div style="" class="col-6 col-md-4 col-lg-2 order-lg-0 wow fadeInUp" data-wow-delay="100ms" data-bs-toggle="collapse" href="#collapse1" role="button" aria-expanded="false" aria-controls="collapse1">
+                            <div class="single-event-area mb-30" >
+                                <div class="event-thumbnail">
+                                    <img src="img/people/seonggyun_han.png" alt="">
+                                </div>
+                                <div class="event-text">
+                                    <h4>Seonggyun Han</h4>
+                                    <div class="event-meta-data">
+                                        <a href="#" class="event-place">MS</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+        
+          
+        
+        
+                        <!-- Single Event Area -->
+                        <div style="" class="col-6 col-md-4 col-lg-2 order-lg-0 wow fadeInUp" data-wow-delay="200ms" data-bs-toggle="collapse" href="#collapse2" role="button" aria-expanded="false" aria-controls="collapse2">
+                            <div class="single-event-area mb-30">
+                                <div class="event-thumbnail">
+                                    <img src="img/people/YoungjooJin.jpg" alt="">
+                                </div>
+                                <div class="event-text">
+                                    <h4>Young joo Jin</h4>
+                                    <div class="event-meta-data">
+                                        <a href="#" class="event-place">MD, Ph.D</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+        
+        
+                        <!-- Single Event Area -->
+                        <div style="" class="col-6 col-md-4 col-lg-2 order-1 order-md-0 order-lg-0 wow fadeInUp" data-wow-delay="300ms" data-bs-toggle="collapse" href="#collapse3" role="button" aria-expanded="false" aria-controls="collapse3">
+                            <div class="single-event-area mb-30">
+                                <div class="event-thumbnail">
+                                    <img src="img/people/HabtamuMinassieAycheh.jpg" alt="">
+                                </div>
+                                <div class="event-text">
+                                    <h4>Habtamu Minassie Aycheh</h4>
+                                    <div class="event-meta-data">
+                                        <a href="#" class="event-place">Ph.D</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+        
+        
+                        
+                        <!-- Single Event Area -->
+                        <div style="" class="col-6 col-md-4 col-lg-2 order-md-1 order-1 order-lg-0 wow fadeInUp" data-wow-delay="400ms" data-bs-toggle="collapse" href="#collapse4" role="button" aria-expanded="false" aria-controls="collapse4">
+                            <div class="single-event-area mb-30">
+                                <div class="event-thumbnail">
+                                    <img src="img/people/JohnChamberlin.jpg" alt="">
+                                </div>
+                                <div class="event-text">
+                                    <h4>John Chamberlin</h4>
+                                    <div class="event-meta-data">
+                                        <a href="#" class="event-place">Ph.D</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>  
+                        
+                        <!-- Single Event Area -->
+                        <div style="" class="col-6 col-md-4 col-lg-2 order-md-1 order-1 order-lg-0 wow fadeInUp" data-wow-delay="500ms" data-bs-toggle="collapse" href="#collapse5" role="button" aria-expanded="false" aria-controls="collapse5">
+                            <div class="single-event-area mb-30 ">
+                                <div class="event-thumbnail">
+                                    <img src="img/people/JuhyunPark.jpg" alt="">
+                                </div>
+                                <div class="event-text">
+                                    <h4>Juhyun Park</h4>
+                                    <div class="event-meta-data">
+                                        <a href="#" class="event-place">MSc. Student</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+
+                        <!-- Single Event Area -->
+                        <div style="" class="col-6 col-md-4 col-lg-2 order-md-1 order-1 order-lg-0 wow fadeInUp" data-wow-delay="600ms" data-bs-toggle="collapse" href="#collapse6" role="button" aria-expanded="false" aria-controls="collapse6">
+                            <div class="single-event-area mb-30 ">
+                                <div class="event-thumbnail">
+                                    <img src="img/people/JaehangShin.jpg" alt="">
+                                </div>
+                                <div class="event-text">
+                                    <h4>Jaehang Shin</h4>
+                                    <div class="event-meta-data">
+                                        <a href="#" class="event-place">MSc. Student</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- ##### Featured Artist Area Start ##### -->
+                        <div class="col-12 order-lg-0">
+                            <section class="featured-artist-area section-padding-100 bg-img bg-overlay bg-fixed collapse" id="collapse1" style=" padding: 0 12px 0 12px; margin-bottom: 30px;" >
+                                <div class="container">
+                                    <div class="row align-items-end">
+                                        
+                                        <div class="col-12">
+                                            <div class="featured-artist-content">
+                                                <!-- Section Heading -->
+                                                <div class="section-heading white text-left mb-30">
+                                                    <h2>introduction</h2>
+                                                    <p class="mb-15">Seonggyun Han joined at my lab in Spring 2016. His major during undergraduate and master degree was bioinformatics and currently he worked as a bioinformatician. He has tremendously experience of analysis NGS data such as WGS, RNA-seq, Chip-seq, and methyl-seq. Especially, he is focusing on understanding molecular mechanism for complex diseases, such as cancer and Alzheimer's disease as well as infectious disease via alternative splicing mechanism with multi-omics data. Also, he developed several NGS tools, including IVAS and IMAS which are Bioconductor packages.</p>
+                                                                       
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                        <!-- ##### Featured Artist Area End ##### -->    
+                        
+                        <!-- ##### Featured Artist Area Start ##### -->
+                        <div class="col-12 order-lg-0">
+                            <section class="featured-artist-area section-padding-100 bg-img bg-overlay bg-fixed collapse " id="collapse2" style="background-image: url(img/bg-img/bg-4.jpg); padding: 0 12px 0 12px; margin-bottom: 30px;">
+                                <div class="container">
+                                    <div class="row align-items-end">
+
+                                        <div class="col-12">
+                                            <div class="featured-artist-content">
+                                                <!-- Section Heading -->
+                                                <div class="section-heading white text-left mb-30">
+                                                    <h2>introduction</h2>
+                                                    <p class="mb-15">Dr. Jin joined the department in August 2018. His research work is on hepatocellular carcinoma.</p>
+                                                    <h2 >EDUCATION</h2>    
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                        <!-- ##### Featured Artist Area End ##### -->      
+                        
+                        <!-- ##### Featured Artist Area Start ##### -->
+                        <div class="col-12 order-1 order-md-0 order-lg-0">
+                            <section class="featured-artist-area section-padding-100 bg-img bg-overlay bg-fixed collapse " id="collapse3" style="background-image: url(img/bg-img/bg-4.jpg); padding: 0 12px 0 12px; margin-bottom: 30px;">
+                                <div class="container">
+                                    <div class="row align-items-end">
+
+                                        <div class="col-12">
+                                            <div class="featured-artist-content">
+                                                <!-- Section Heading -->
+                                                <div class="section-heading white text-left mb-30">
+                                                    <h2>introduction</h2>
+                                                    <p class="mb-15">Dr. Habtamu joined the department in March 2019. His research interests are in machine learning approaches for designing prediction models by investigating the association between brain morphometry and demographic attributes that affect cognitive reserve. His research focuses mainly in the area of Bioinformatics and Computational Neuroscience.</p>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                        <!-- ##### Featured Artist Area End ##### -->       
+                        
+                        <!-- ##### Featured Artist Area Start ##### -->
+                        <div class="col-12 order-1 order-md-2 order-lg-0">
+                            <section class="featured-artist-area section-padding-100 bg-img bg-overlay bg-fixed collapse " id="collapse4" style="background-image: url(img/bg-img/bg-4.jpg); padding: 0 12px 0 12px; margin-bottom: 30px;">
+                                <div class="container">
+                                    <div class="row align-items-end">
+
+                                        <div class="col-12">
+                                            <div class="featured-artist-content">
+                                                <!-- Section Heading -->
+                                                <div class="section-heading white text-left mb-30">
+                                                    <h2>introduction</h2>
+                                                    <p class="mb-15">John completed B.S. in Microbiology and Statistics from University of Georgia, 2016. He joined the department in Fall 2018. His current interests revolve around development of new approaches to glean biological insights from emerging sequencing technologies, mainly pertaining to the regulation of transcription and splicing. He is exploring a variety of projects in pure and applied bioinformatics: 1) Impact of technical biases of single cell RNA sequencing; 2) Detection of regulation of pre-mRNA processing from scRNA-seq; 3) MicroRNA target prediction and roles in human disease; 4) Etiological relevance of alternative splicing in human disease; and 5) Detection and regulation of nonsense mediated decay isoform production from RNA-seq.</p>
+     
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                        <!-- ##### Featured Artist Area End ##### -->       
+                        
+        
+        
+                        <!-- ##### Featured Artist Area Start ##### -->
+                        <div class="col-12 order-1 order-md-2 order-lg-0">
+                            <section class="featured-artist-area section-padding-100 bg-img bg-overlay bg-fixed collapse " id="collapse5" style="background-image: url(img/bg-img/bg-4.jpg); padding: 0 12px 0 12px; margin-bottom: 30px;">
+                                <div class="container">
+                                    <div class="row align-items-end">
+
+                                        <div class="col-12">
+                                            <div class="featured-artist-content">
+                                                <!-- Section Heading -->
+                                                <div class="section-heading white text-left mb-30">
+                                                    <h2>introduction</h2>
+                                                    <p class="mb-15">Juhyun completed B.S in Molecular biology from University of Hanyang, 2018. He joined the department in Spring 2018. He interested in Cancer genetics and Neuro science. His main research is using RNA-seq analysis to identify novel Alternative Splicing event. Now, he is conducting an alternative splicing study on SNP affecting the onset of Alzheimer's disease. Also, He is working to integrate genomic and transcript data generated by NGS technology to identify functional exon skipping events and genetic variations, and to discover new molecular mechanisms that impact alternate splicing at the genome level.</p>    
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                        <!-- ##### Featured Artist Area End ##### -->    
+
+                        <!-- ##### Featured Artist Area Start ##### -->
+                        <div class="col-12 order-1 order-md-2 order-lg-0">
+                            <section class="featured-artist-area section-padding-100 bg-img bg-overlay bg-fixed collapse " id="collapse6" style="background-image: url(img/bg-img/bg-4.jpg); padding: 0 12px 0 12px; margin-bottom: 30px;">
+                                <div class="container">
+                                    <div class="row align-items-end">
+
+                                        <div class="col-12">
+                                            <div class="featured-artist-content">
+                                                <!-- Section Heading -->
+                                                <div class="section-heading white text-left mb-30">
+                                                    <h2>introduction</h2>
+                                                    <p class="mb-15">Jaehang completed Msc degree in Plant systematics from Yeungnam University, 2017. Currently, he is working as a Senior Staff of the academic content department of the genome company, EONE-DIAGNOMICS Genome Center. </p>   
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                        <!-- ##### Featured Artist Area End ##### -->      
+                                                
+                        
+                    </div>   
+    
+                        
+                </div>                             
+
+
+
+
+            </div>
+
+               
+        </div>               
+
+        
+
+
+    </section>
+    <!-- ##### Events Area End ##### -->
+
+    <script>
+        function getParams(){
+            console.log("1ㅁㄴㅇ");
+     var url = window.location.search.replace('?','');
+    var params = {};
+     var urlArray = url.split('&');
+
+    for(var i in urlArray)
+    {
+      var param = urlArray[i].split('=');
+      params[param[0]] = param[1]; 
+    }
+    return params;
+        }
+
+        const params = getParams();
+        
+        var peo=params['peo'];
+        if(peo=='1'){
+        
+        var a = '<button class="nav-link active" style="font-size: 16px; font-weight: 700;" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Professor</button>';
+        document.getElementById("pro").innerHTML = a;
+        document.getElementById("home-tab-pane").classList.add('show','active');
+        }
+        else if(peo=='2'){
+        var a = '<button class="nav-link active" style="font-size: 16px; font-weight: 700;" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="true">Member</button>';
+        document.getElementById("mem").innerHTML =a;
+        document.getElementById("profile-tab-pane").classList.add('show', 'active');
+        }else if(peo=='3'){
+        var a = '<button class="nav-link active" style="font-size: 16px; font-weight: 700;" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="true">Alumni</button>';
+        document.getElementById("alu").innerHTML = a;
+        document.getElementById("contact-tab-pane").classList.add('show', 'active');
+        }
+        
+    </script>
+
+
+
+    <!-- ##### Footer Area Start ##### -->
+    <footer class="footer-area">
+        <div class="container">
+            <div class="row d-flex flex-wrap align-items-center">
+                <div class="col-12 col-md-8 row">                   
+                    <a class="col-3" href="https://www.snu.ac.kr/"><img style="padding: 0 10px;" src="img/core-img/logo_snu.png" alt=""></a>
+                    <a class="col-3" href="https://ipenguinpoint.com/user/index.php"><img style="padding: 0 10px;" src="img/core-img/mhm-logo.png" alt=""></a>
+                    <a class="col-3" href="https://mousephenotype.kr/"><img style="padding: 0 10px;" src="img/core-img/kmpc2_logo_scroll.png" alt=""></a>
+                    <a class="col-3" href="https://www.healthbigdata.org/"><img style="padding: 0 10px;" src="img/core-img/mbrc.png" alt=""></a>
+                </div>   
+                    
+
+
+                
+                <div class="col-12 col-md-4">
+                    <p class="copywrite-text"><a href="#"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        Copyright &copy;<script>document.write(new Date().getFullYear());</script>LAB All rights reserved. This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- ##### Footer Area Start ##### -->
+
+    <!-- ##### All Javascript Script ##### -->
+    <!-- jQuery-2.2.4 js -->
+    <script src="js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="js/bootstrap/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="js/bootstrap/bootstrap.js"></script>
+    <!-- All Plugins js -->
+    <script src="js/plugins/plugins.js"></script>
+    <!-- Active js -->
+    <script src="js/active.js"></script>
+    <script>
+        firebase.auth().onAuthStateChanged(function (user) {
+            if(user){
+                document.getElementById('loginBtn').style.cssText="display: none;"
+                document.getElementById('logoutBtn').style.cssText="display: block;"
+            }else{
+                document.getElementById('loginBtn').style.cssText="display: block;"
+                document.getElementById('logoutBtn').style.cssText="display: none;"
+            }
+            }
+        
+        );
+
+        $('#logoutBtn').click(function(){
+            window.location.href = "index.html";
+            firebase.auth().signOut();
+           
+        })
+
+    </script>
+</body>
+
+</html>
